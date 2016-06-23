@@ -1,10 +1,21 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 )
+
+//Article our model for our articles API
+type Article struct {
+	Title   string `json:"title"`
+	Desc    string `json:"desc"`
+	Content string `json:"content"`
+}
+
+//Articles slice of Article
+type Articles []Article
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to Homepage!")
@@ -17,8 +28,12 @@ func returnArticle(w http.ResponseWriter, r *http.Request) {
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "all articles")
+	articles := Articles{
+		Article{Title: "Hello", Desc: "Article Desc", Content: "Lorem Ipsum"},
+		Article{Title: "Hello 2", Desc: "Article Desc", Content: "Lorem Ipsum"},
+	}
 	fmt.Println("Endpoint hit: returnAllArticles")
+	json.NewEncoder(w).Encode(articles)
 }
 
 func addArticles(w http.ResponseWriter, r *http.Request) {
