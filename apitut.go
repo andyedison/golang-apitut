@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 //Article our model for our articles API
@@ -47,14 +49,13 @@ func delArticles(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleRequests() {
-	http.HandleFunc("/", homePage)
-	http.HandleFunc("/all", returnAllArticles)
-	http.HandleFunc("/single", returnArticle)
-	http.HandleFunc("/delete", delArticles)
-	http.HandleFunc("/add", addArticles)
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	myRouter := mux.NewRouter().StrictSlash(true)
+	myRouter.HandleFunc("/", homePage)
+	myRouter.HandleFunc("/all", returnAllArticles)
+	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }
 
 func main() {
+	fmt.Println("Rest API v2.0 - Mux Routers")
 	handleRequests()
 }
