@@ -38,6 +38,13 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(articles)
 }
 
+func returnOneArticle(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	key := vars["key"]
+
+	fmt.Fprintln(w, "key: "+key)
+}
+
 func addArticles(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "add article")
 	fmt.Println("Endpoint hit: addArticles")
@@ -52,6 +59,7 @@ func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", homePage)
 	myRouter.HandleFunc("/all", returnAllArticles)
+	myRouter.HandleFunc("/article/{key}", returnOneArticle)
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }
 
