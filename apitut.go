@@ -34,7 +34,7 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 		Article{Title: "Hello", Desc: "Article Desc", Content: "Lorem Ipsum"},
 		Article{Title: "Hello 2", Desc: "Article Desc", Content: "Lorem Ipsum"},
 	}
-	fmt.Println("Endpoint hit: returnAllArticles")
+	fmt.Println("Endpoint hit: returnAllArticles method:" + r.Method)
 	json.NewEncoder(w).Encode(articles)
 }
 
