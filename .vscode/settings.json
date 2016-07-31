@@ -1,4 +1,18 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "git.enabled": true
+    "git.enabled": true,
+    "go.buildOnSave": true,
+    "go.lintOnSave": true,
+    "go.vetOnSave": true,
+    "go.buildTags": "",
+    "go.buildFlags": [],
+    "go.lintFlags": [],
+    "go.vetFlags": [],
+    "go.coverOnSave": false,
+    "go.useCodeSnippetsOnFunctionSuggest": false,
+    "go.formatOnSave": true,
+    "go.formatTool": "goreturns",
+    "go.goroot": "/usr/local/opt/go/libexec",
+    "go.gopath": "/Users/beardman/Projects/Go",
+    "go.gocodeAutoBuild": false
 }
